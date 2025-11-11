@@ -27,12 +27,45 @@
 
 .hero-logo-container {
   margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
 }
 
 .hero-logo {
   height: 80px;
   width: auto;
   filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.5));
+}
+
+.beta-badge {
+  position: absolute;
+  top: -10px;
+  right: -40px;
+  background: linear-gradient(135deg, var(--neon-green), var(--neon-green-bright));
+  color: var(--black);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  border: 2px solid var(--black);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.6),
+              0 4px 12px rgba(0, 0, 0, 0.4);
+  animation: betaPulse 2s ease-in-out infinite;
+  transform: rotate(12deg);
+}
+
+@keyframes betaPulse {
+  0%, 100% {
+    transform: rotate(12deg) scale(1);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    transform: rotate(12deg) scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.8),
+                0 6px 16px rgba(0, 0, 0, 0.5);
+  }
 }
 
 .hero-badge {
