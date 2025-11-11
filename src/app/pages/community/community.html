@@ -122,10 +122,18 @@
     @for (q of topQuesters; track q.name; let i = $index) {
       <li class="lb-row">
         <div class="rank-badge" [class.gold]="i===0" [class.silver]="i===1" [class.bronze]="i===2">
-          <svg *ngIf="i===0" class="rb-icon crown" viewBox="0 0 24 24"><path d="M3 8l4 3 3-5 3 5 4-3 2 11H1l2-11zM6 19h12"/></svg>
-          <svg *ngIf="i===1" class="rb-icon medal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><path d="M9 2h6l1 5H8l1-5z"/></svg>
-          <svg *ngIf="i===2" class="rb-icon medal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><path d="M9 2h6l1 5H8l1-5z"/></svg>
-          <span *ngIf="i>2" class="rb-num">{{ i + 1 }}</span>
+          @if (i===0) {
+            <svg class="rb-icon crown" viewBox="0 0 24 24"><path d="M3 8l4 3 3-5 3 5 4-3 2 11H1l2-11zM6 19h12"/></svg>
+          }
+          @if (i===1) {
+            <svg class="rb-icon medal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><path d="M9 2h6l1 5H8l1-5z"/></svg>
+          }
+          @if (i===2) {
+            <svg class="rb-icon medal" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6"/><path d="M9 2h6l1 5H8l1-5z"/></svg>
+          }
+          @if (i>2) {
+            <span class="rb-num">{{ i + 1 }}</span>
+          }
         </div>
 
         <!-- meta -->
