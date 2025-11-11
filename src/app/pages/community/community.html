@@ -73,38 +73,41 @@
 <!-- GRID: posts + sidebar -->
 <main class="content page-grid">
   <section class="posts">
-    @for (post of filteredPosts; track post.title) {
-      <div class="post-card">
-        <div class="post-header">
-          <div class="post-user">
-            <div class="post-avatar"
-              [style.backgroundImage]="'url(' + getAvatarUrl(post.user) + ')'"
-              aria-hidden="true">
-            </div>
-            <div class="user-info">
-              <div class="user-name">{{ post.user }}</div>
-              <div class="time">{{ post.time }}</div>
-            </div>
-          </div>
-        </div>
+  @for (post of filteredPosts; track post.title) {
+    <div class="post-card">
+    <div class="post-header">
+  <div
+    class="post-avatar"
+    [attr.data-initials]="initial(post.user)"
+    [style.background]="avatarStyle(post.user)"
+    aria-hidden="true">
+  </div>
 
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content }}</p>
+  <div class="user-info">
+    <div class="user-name">{{ post.user }}</div>
+    <div class="time">{{ post.time }}</div>
+  </div>
+</div>
 
-        <div class="tags">
-          @for (tag of post.tags; track tag) {
-            <span>{{ tag }}</span>
-          }
-        </div>
 
-        <div class="post-stats">
-          <div>👍 {{ post.likes }}</div>
-          <div>💬 {{ post.comments }}</div>
-          <div>👁️ {{ post.views }}</div>
-        </div>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.content }}</p>
+
+      <div class="tags">
+        @for (tag of post.tags; track tag) {
+          <span>{{ tag }}</span>
+        }
       </div>
-    }
-  </section>
+
+      <div class="post-stats">
+        <div>👍 {{ post.likes }}</div>
+        <div>💬 {{ post.comments }}</div>
+        <div>👁️ {{ post.views }}</div>
+      </div>
+    </div>
+  }
+</section>
+
 
     <!-- TOP QUESTERS -->
   <aside class="leaderboard-card">
