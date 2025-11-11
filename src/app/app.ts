@@ -142,7 +142,7 @@ export class App implements AfterViewInit, OnDestroy {
       if (this.ctx) {
         this.ctx.beginPath();
         this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        this.ctx.fillStyle = `rgba(0, 255, 65, ${particle.opacity})`;
+        this.ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
         this.ctx.fill();
 
         // Draw connection to mouse if close
@@ -154,7 +154,7 @@ export class App implements AfterViewInit, OnDestroy {
           this.ctx.beginPath();
           this.ctx.moveTo(particle.x, particle.y);
           this.ctx.lineTo(this.mouseX, this.mouseY);
-          this.ctx.strokeStyle = `rgba(0, 255, 65, ${(1 - distance / 150) * 0.2})`;
+          this.ctx.strokeStyle = `rgba(255, 255, 255, ${(1 - distance / 150) * 0.2})`;
           this.ctx.lineWidth = 1;
           this.ctx.stroke();
         }
@@ -176,7 +176,7 @@ export class App implements AfterViewInit, OnDestroy {
             this.ctx.beginPath();
             this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
             this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-            this.ctx.strokeStyle = `rgba(0, 255, 65, ${(1 - distance / 100) * 0.15})`;
+            this.ctx.strokeStyle = `rgba(255, 255, 255, ${(1 - distance / 100) * 0.15})`;
             this.ctx.lineWidth = 0.5;
             this.ctx.stroke();
           }

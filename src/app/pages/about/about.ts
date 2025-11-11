@@ -24,20 +24,36 @@ export class About implements OnInit, AfterViewInit, OnDestroy {
 
   teamMembers: TeamMember[] = [
     {
-      name: 'Hussian',
-      role: 'Founder & CEO',
+      name: 'Hussian Asghar Kazmi',
+      role: 'Founder',
       bio: "I'm the founder and driving force behind HeatBeast E-Sports. With a strong vision for building a dynamic and competitive gaming community, I leads the company’s strategy, growth, and overall direction. Passionate about e-sports, content creation, and innovation",
       image: 'Hussian.jpg',
-      instagram: 'https://instagram.com/hussian',
-      linkedin: 'https://linkedin.com/in/hussian'
+      instagram: 'https://www.instagram.com/ig_vtxraw/#',
+      linkedin: 'https://www.linkedin.com/in/husain-asghar-33177a260/'
     },
     {
-      name: 'Harsh',
+      name: 'Harsh Kumar',
+      role: 'CEO',
+      bio: 'As CEO of HeatBeast E-Sports, I drive growth, innovation, and excellence in competitive gaming, content creation, and community building. With a focus on nurturing talent, fostering teamwork, and pushing boundaries',
+      image: 'Harsh.jpg',
+      instagram: 'https://www.instagram.com/epicharsh07?igsh=MWZiaHdnZ3Jtc3k5Yg==',
+      linkedin: 'https://www.linkedin.com/in/harsh-kumar-0859722a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
+    },
+    {
+      name: 'Harsh Mehta',
       role: 'Head of Operations',
       bio: 'I’m responsible for ensuring seamless day-to-day operations, fostering team collaboration, and driving organizational efficiency. I also lead all esports initiatives within the app, including tournaments, community engagement, and strategic growth in the esports domain.',
       image: 'HK.png',
       instagram: 'https://instagram.com/harsh',
-      linkedin: 'https://linkedin.com/in/harsh'
+      linkedin: ''
+    },
+    {
+      name: 'Ananth Gokul Das',
+      role: 'Public Relation head & Social Media Manager',
+      bio: 'I am the PR and Social Media Manager at HeatBeast E-Sports, where I handle brand communication, public relations, and digital engagement. My role includes managing our social media presence, crafting compelling content, and building meaningful connections with our audience and partners.',
+      image: 'ananth.jpg',
+      instagram: 'https://www.instagram.com/ananth_gd/',
+      linkedin: 'https://www.linkedin.com/in/ananthgokudas/'
     },
     {
       name: 'Vikash Kumar',
@@ -52,40 +68,24 @@ export class About implements OnInit, AfterViewInit, OnDestroy {
       role: 'Community Manager',
       bio: "I’m passionate about building strong communities, ensuring smooth app performance, and driving collaboration across teams. I believe in continuous learning, thoughtful innovation, and creating meaningful impact through every project I work on.",
       image: 'arsh.png',
-      instagram: 'https://instagram.com/arsh',
-      linkedin: 'https://linkedin.com/in/arsh'
+      instagram: 'https://www.instagram.com/arsh_saharan?igsh=cjd6dzR3d3R2a2g1',
+      linkedin: 'https://www.linkedin.com/in/arsh-saharan-3b2552312/'
     },
     {
-      name: 'Ananth',
-      role: 'Social Media Manager',
-      bio: 'I am the PR and Social Media Manager at HeatBeast E-Sports, where I handle brand communication, public relations, and digital engagement. My role includes managing our social media presence, crafting compelling content, and building meaningful connections with our audience and partners.',
-      image: 'Ananth.jpg',
-      instagram: 'https://instagram.com/ananth',
-      linkedin: 'https://linkedin.com/in/ananth'
+      name: 'Anuskha Agarwal',
+      role: 'Data Analyst',
+      bio: "Hello guys! I'm Anushka — team's Data Analyst, which is a bit like being a treasure hunter. I sift through mountains of data—think K/D ratios, popular drop zones, and item crafting trends—to find the hidden patterns. My goal? To help the dev team use that treasure to forge even more epic experiences, balance the meta, and crush bugs.",
+      image: 'anu.jpg',
+      instagram: 'https://www.instagram.com/anushka.ag16?igsh=emozeDZ4dWl3bjYz',
+      linkedin: 'https://www.linkedin.com/in/anushkaagarwal161'
     },
     {
-      name: 'Harsh',
-      role: 'CEO',
-      bio: 'As CEO of HeatBeast E-Sports, I drive growth, innovation, and excellence in competitive gaming, content creation, and community building. With a focus on nurturing talent, fostering teamwork, and pushing boundaries',
-      image: 'Harsh.jpg',
-      instagram: 'https://www.instagram.com/epicharsh07?igsh=MWZiaHdnZ3Jtc3k5Yg==',
-      linkedin: 'https://www.linkedin.com/in/harsh-kumar-0859722a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
-    },
-    {
-      name: 'Vikram Malhotra',
-      role: 'Technical Director',
-      bio: 'Infrastructure architect ensuring 99.9% uptime. Scaling systems for millions of concurrent users.',
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Vikram',
-      instagram: 'https://instagram.com/vikrammalhotra',
-      linkedin: 'https://linkedin.com/in/vikrammalhotra'
-    },
-    {
-      name: 'Ishita Kapoor',
-      role: 'Content Creator Lead',
-      bio: 'Creating viral esports content. Managing streaming partnerships and influencer collaborations.',
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ishita',
-      instagram: 'https://instagram.com/ishitakapoor',
-      linkedin: 'https://linkedin.com/in/ishitakapoor'
+      name: 'Raghav Agarwal',
+      role: 'Gaming Arenas & StudioLead',
+      bio: 'As the Gaming Arenas Lead, I’m responsible for discovering local gaming arenas and collaborating with them to host exciting tournaments. My role focuses on building strong connections within the gaming community and creating engaging, on-ground experiences for players. I strive to make every event memorable while strengthening the bridge between gamers and local venues.',
+      image: 'Raghav.jpg',
+      instagram: 'https://www.instagram.com/raghav.404notfound/',
+      linkedin: 'https://www.linkedin.com/in/raghav-agarwal-7019a5290/'
     },
     {
       name: 'Aditya Nair',
