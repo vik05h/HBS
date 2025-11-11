@@ -1,1 +1,158 @@
-<p>live-stream works!</p>
+<div class="live-stream-page">
+  <!-- Hero Section -->
+  <section class="stream-hero">
+    <div class="hero-content">
+      <div class="live-badge">
+        <span class="pulse-dot"></span>
+        LIVE NOW
+      </div>
+      <h1 class="hero-title">
+        Watch the Best <span class="title-accent">Esports Action</span>
+      </h1>
+      <p class="hero-subtitle">Join thousands of viewers watching live tournaments and pro gameplay</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">250+</span>
+          <span class="stat-label">Live Streams</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">50K+</span>
+          <span class="stat-label">Viewers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Coverage</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Stream -->
+  <section class="featured-stream">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Featured Stream</h2>
+        <div class="live-indicator">
+          <span class="pulse-dot"></span>
+          {{ formatViewers(featuredStream.viewers) }} watching now
+        </div>
+      </div>
+
+      <div class="featured-player">
+        <div class="player-wrapper">
+          <img [src]="featuredStream.thumbnail" [alt]="featuredStream.title" class="stream-thumbnail" />
+          <div class="play-overlay">
+            <div class="play-button">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="40" fill="rgba(0, 255, 65, 0.2)"/>
+                <path d="M32 24L56 40L32 56V24Z" fill="#00ff41"/>
+              </svg>
+            </div>
+          </div>
+          <div class="stream-overlay">
+            <div class="stream-info">
+              <span class="live-badge-small">
+                <span class="pulse-dot"></span>
+                LIVE
+              </span>
+              <span class="viewer-count">{{ formatViewers(featuredStream.viewers) }} viewers</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stream-details">
+          <div class="streamer-info">
+            <img [src]="featuredStream.avatar" [alt]="featuredStream.streamer" class="streamer-avatar" />
+            <div class="streamer-text">
+              <h3 class="stream-title">{{ featuredStream.title }}</h3>
+              <div class="streamer-meta">
+                <span class="streamer-name">{{ featuredStream.streamer }}</span>
+                <span class="game-tag">{{ featuredStream.game }}</span>
+              </div>
+            </div>
+          </div>
+          <button class="follow-btn">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 3.33334L12.575 8.57501L18.3333 9.41668L14.1667 13.4583L15.15 19.1833L10 16.4583L4.85 19.1833L5.83333 13.4583L1.66667 9.41668L7.425 8.57501L10 3.33334Z" 
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Follow
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="category-filter">
+    <div class="container">
+      <div class="filter-buttons">
+        @for (category of categories; track category) {
+          <button 
+            class="filter-btn"
+            [class.active]="selectedCategory === category"
+            (click)="filterByCategory(category)">
+            {{ category }}
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Streams Grid -->
+  <section class="streams-grid">
+    <div class="container">
+      <h2 class="section-title">Live Channels</h2>
+      
+      <div class="grid">
+        @for (stream of getFilteredStreams(); track stream.id) {
+          <div class="stream-card">
+            <div class="card-thumbnail">
+              <img [src]="stream.thumbnail" [alt]="stream.title" />
+              <div class="thumbnail-overlay">
+                <div class="live-badge-card">
+                  <span class="pulse-dot"></span>
+                  LIVE
+                </div>
+                <div class="viewer-badge">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 3C4.5 3 1.5 5.5 0 8c1.5 2.5 4.5 5 8 5s6.5-2.5 8-5c-1.5-2.5-4.5-5-8-5zm0 8.5c-1.933 0-3.5-1.567-3.5-3.5S6.067 4.5 8 4.5s3.5 1.567 3.5 3.5-1.567 3.5-3.5 3.5z"/>
+                    <circle cx="8" cy="8" r="2"/>
+                  </svg>
+                  {{ formatViewers(stream.viewers) }}
+                </div>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-header">
+                <img [src]="stream.avatar" [alt]="stream.streamer" class="card-avatar" />
+                <div class="card-info">
+                  <h3 class="card-title">{{ stream.title }}</h3>
+                  <p class="card-streamer">{{ stream.streamer }}</p>
+                  <p class="card-game">{{ stream.game }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="stream-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Want to Start Streaming?</h2>
+        <p class="cta-text">Join our platform and share your gameplay with thousands of viewers</p>
+        <button class="cta-button">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 10L19.5528 7.72361C20.2177 7.39116 21 7.87465 21 8.61803V15.382C21 16.1253 20.2177 16.6088 19.5528 16.2764L15 14M5 18H13C14.1046 18 15 17.1046 15 16V8C15 6.89543 14.1046 6 13 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18Z" 
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Start Streaming
+        </button>
+      </div>
+    </div>
+  </section>
+</div>
