@@ -70,55 +70,41 @@
     </button>
   </div>
 
-  <!-- GRID: posts + sidebar -->
-  <main class="content page-grid">
-    <section class="posts">
-      @for (post of filteredPosts; track post.title) {
-        <div class="post-card">
-         <div class="post-header">
-  <div class="post-user">
-    <!-- REPLACE this element -->
-    <div class="post-avatar"
-     [style.backgroundImage]="'url(' + getAvatarUrl(post.user) + ')'"
-     aria-hidden="true">
-</div>
-
-    <!-- keep the rest as is -->
-    <div class="user-info">
-      <div class="user-name">{{ post.user }}</div>
-      <div class="time">{{ post.time }}</div>
-    </div>
-  </div>
-</div>
-
-<section class="posts">
-  <!-- NOTE: use filteredPosts (not posts) -->
-  @for (post of filteredPosts; track post.title) {
-    <div class="post-card">
-      <div class="post-header">
-        <div class="user">{{ post.user }}</div>
-        <div class="time">{{ post.time }}</div>
-      </div>
-      <h3>{{ post.title }}</h3>
-      <p>{{ post.content }}</p>
-
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.content }}</p>
-
-          <div class="tags">
-            @for (tag of post.tags; track tag) {
-              <span>{{ tag }}</span>
-            }
-          </div>
-
-          <div class="post-stats">
-            <div>👍 {{ post.likes }}</div>
-            <div>💬 {{ post.comments }}</div>
-            <div>👁️ {{ post.views }}</div>
+<!-- GRID: posts + sidebar -->
+<main class="content page-grid">
+  <section class="posts">
+    @for (post of filteredPosts; track post.title) {
+      <div class="post-card">
+        <div class="post-header">
+          <div class="post-user">
+            <div class="post-avatar"
+              [style.backgroundImage]="'url(' + getAvatarUrl(post.user) + ')'"
+              aria-hidden="true">
+            </div>
+            <div class="user-info">
+              <div class="user-name">{{ post.user }}</div>
+              <div class="time">{{ post.time }}</div>
+            </div>
           </div>
         </div>
-      }
-    </section>
+
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content }}</p>
+
+        <div class="tags">
+          @for (tag of post.tags; track tag) {
+            <span>{{ tag }}</span>
+          }
+        </div>
+
+        <div class="post-stats">
+          <div>👍 {{ post.likes }}</div>
+          <div>💬 {{ post.comments }}</div>
+          <div>👁️ {{ post.views }}</div>
+        </div>
+      </div>
+    }
+  </section>
 
     <!-- TOP QUESTERS -->
   <aside class="leaderboard-card">
@@ -146,7 +132,9 @@
         <div class="lb-meta">
           <div class="name">
             {{ q.name }}
-            <span class="online-dot" *ngIf="q.online"></span>
+            @if (q.online) {
+              <span class="online-dot"></span>
+            }
           </div>
           <div class="role">{{ q.title }}</div>
         </div>
