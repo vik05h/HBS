@@ -76,7 +76,7 @@
 
     <div class="team-container">
       @for (member of teamMembers; track member.name) {
-        <div class="team-card">
+        <div class="team-card" (click)="openModal(member)" role="button" tabindex="0" aria-label="View {{member.name}} profile">
           <div class="card-inner">
             <div class="card-image-container">
               <img [src]="member.image" [alt]="member.name" class="member-image" />
@@ -124,3 +124,38 @@
     </div>
   </section>
 </div>
+
+<!-- Modal placed outside .about-page to avoid stacking context issues -->
+@if (showModal) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" type="button" (click)="closeModal()" aria-label="Close profile">✕</button>
+      <div class="modal-header">
+        <img [src]="selectedMember?.image" [alt]="selectedMember?.name || 'Profile'" class="modal-avatar" />
+        <div class="modal-title">
+          <h3>{{ selectedMember?.name }}</h3>
+          <p>{{ selectedMember?.role }}</p>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p>{{ selectedMember?.bio }}</p>
+      </div>
+      <div class="modal-footer">
+        <div class="social-links">
+          @if (selectedMember?.instagram) {
+            <button class="social-btn instagram" type="button" (click)="openSocialLink(selectedMember!.instagram!)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm10 2c1.7 0 3 1.3 3 3v10c0 1.7-1.3 3-3 3H7c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3h10zm-5 3a6 6 0 100 12 6 6 0 000-12zm0 2a4 4 0 110 8 4 4 0 010-8zm5.5-.9a1.1 1.1 0 100 2.2 1.1 1.1 0 000-2.2z"/></svg>
+              Instagram
+            </button>
+          }
+          @if (selectedMember?.linkedin) {
+            <button class="social-btn linkedin" type="button" (click)="openSocialLink(selectedMember!.linkedin!)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8.98h5v15H0v-15zM8.98 8.98h4.8v2.05h.07c.67-1.27 2.3-2.6 4.74-2.6 5.07 0 6 3.34 6 7.68v8.87h-5v-7.87c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.16v8.01h-5v-15z"/></svg>
+              LinkedIn
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

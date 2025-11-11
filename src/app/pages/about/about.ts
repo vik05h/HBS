@@ -5,6 +5,8 @@ interface TeamMember {
   role: string;
   bio: string;
   image: string;
+  instagram?: string;
+  linkedin?: string;
 }
 
 @Component({
@@ -15,73 +17,99 @@ interface TeamMember {
 })
 export class About implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('scrollContainer') scrollContainer!: ElementRef<HTMLDivElement>;
+  
+  // Modal state for viewing member profile and social links
+  selectedMember: TeamMember | null = null;
+  showModal = false;
 
   teamMembers: TeamMember[] = [
     {
       name: 'Hussian',
       role: 'Founder & CEO',
       bio: "I'm the founder and driving force behind HeatBeast E-Sports. With a strong vision for building a dynamic and competitive gaming community, I leads the company’s strategy, growth, and overall direction. Passionate about e-sports, content creation, and innovation",
-      image: 'Hussian.jpg'
+      image: 'Hussian.jpg',
+      instagram: 'https://instagram.com/hussian',
+      linkedin: 'https://linkedin.com/in/hussian'
     },
     {
       name: 'Harsh',
       role: 'Head of Operations',
       bio: 'I’m responsible for ensuring seamless day-to-day operations, fostering team collaboration, and driving organizational efficiency. I also lead all esports initiatives within the app, including tournaments, community engagement, and strategic growth in the esports domain.',
-      image: 'HK.png'
+      image: 'HK.png',
+      instagram: 'https://instagram.com/harsh',
+      linkedin: 'https://linkedin.com/in/harsh'
     },
     {
       name: 'Vikash Kumar',
       role: 'Lead Developer',
       bio: "As the Head of Product, I'm responsible for the app's overall vision and strategic direction. I own the feature roadmap, translating our goals into tangible updates and new experiences for the HBS esports community. My job is to ensure we are constantly evolving and delivering the best possible platform for our users.",
-      image: 'Vikash.jpg'
+      image: 'Vikash.jpg',
+      instagram: 'https://instagram.com/vikashkumar',
+      linkedin: 'https://linkedin.com/in/vikashkumar'
     },
     {
       name: 'Arsh Saharan',
       role: 'Community Manager',
       bio: "I’m passionate about building strong communities, ensuring smooth app performance, and driving collaboration across teams. I believe in continuous learning, thoughtful innovation, and creating meaningful impact through every project I work on.",
-      image: 'arsh.png'
+      image: 'arsh.png',
+      instagram: 'https://instagram.com/arsh',
+      linkedin: 'https://linkedin.com/in/arsh'
     },
     {
       name: 'Ananth',
       role: 'Social Media Manager',
       bio: 'I am the PR and Social Media Manager at HeatBeast E-Sports, where I handle brand communication, public relations, and digital engagement. My role includes managing our social media presence, crafting compelling content, and building meaningful connections with our audience and partners.',
-      image: 'Ananth.jpg'
+      image: 'Ananth.jpg',
+      instagram: 'https://instagram.com/ananth',
+      linkedin: 'https://linkedin.com/in/ananth'
     },
     {
-      name: 'Ananya Gupta',
-      role: 'Marketing Head',
-      bio: 'Digital marketing expert growing esports brands. 5 years experience in gaming industry.',
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ananya'
+      name: 'Harsh',
+      role: 'CEO',
+      bio: 'As CEO of HeatBeast E-Sports, I drive growth, innovation, and excellence in competitive gaming, content creation, and community building. With a focus on nurturing talent, fostering teamwork, and pushing boundaries',
+      image: 'Harsh.jpg',
+      instagram: 'https://www.instagram.com/epicharsh07?igsh=MWZiaHdnZ3Jtc3k5Yg==',
+      linkedin: 'https://www.linkedin.com/in/harsh-kumar-0859722a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app'
     },
     {
       name: 'Vikram Malhotra',
       role: 'Technical Director',
       bio: 'Infrastructure architect ensuring 99.9% uptime. Scaling systems for millions of concurrent users.',
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Vikram'
+      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Vikram',
+      instagram: 'https://instagram.com/vikrammalhotra',
+      linkedin: 'https://linkedin.com/in/vikrammalhotra'
     },
     {
       name: 'Ishita Kapoor',
       role: 'Content Creator Lead',
       bio: 'Creating viral esports content. Managing streaming partnerships and influencer collaborations.',
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ishita'
+      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Ishita',
+      instagram: 'https://instagram.com/ishitakapoor',
+      linkedin: 'https://linkedin.com/in/ishitakapoor'
     },
     {
       name: 'Aditya Nair',
       role: 'Product Manager',
       bio: 'Driving product innovation. Building features that gamers love and competitors envy.',
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Aditya'
+      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Aditya',
+      instagram: 'https://instagram.com/adityanair',
+      linkedin: 'https://linkedin.com/in/adityanair'
     },
     {
       name: 'Meera Joshi',
       role: 'UX/UI Designer',
       bio: 'Crafting beautiful gaming experiences. Award-winning designer with focus on player engagement.',
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Meera'
+      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Meera',
+      instagram: 'https://instagram.com/meerajoshi',
+      linkedin: 'https://linkedin.com/in/meerajoshi'
     },
     {
       name: 'Rahul Desai',
       role: 'Partnership Manager',
       bio: 'Building strategic partnerships with game publishers, sponsors, and esports organizations globally.',
-      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul'
+      image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul',
+      instagram: 'https://instagram.com/rahuldesai',
+      linkedin: 'https://linkedin.com/in/rahuldesai'
     }
   ];
 
@@ -185,5 +213,26 @@ export class About implements OnInit, AfterViewInit, OnDestroy {
       `;
       (aboutSection as HTMLElement).style.opacity = `${Math.max(opacity, 0.4)}`;
     }
+  }
+
+  // Open profile modal
+  openModal(member: TeamMember) {
+    this.selectedMember = member;
+    this.showModal = true;
+    // Prevent background scroll when modal is open
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close profile modal
+  closeModal() {
+    this.showModal = false;
+    this.selectedMember = null;
+    document.body.style.overflow = '';
+  }
+
+  // Open external social profile safely
+  openSocialLink(url: string) {
+    if (!url) return;
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 }
