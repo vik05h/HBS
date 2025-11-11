@@ -18,10 +18,12 @@
  
 
   <div class="stats-container">
-    <div class="stat-card" *ngFor="let s of stats">
-      <h2>{{ s.value }}</h2>
-      <p>{{ s.label }}</p>
-    </div>
+    @for (s of stats; track s.label) {
+      <div class="stat-card">
+        <h2>{{ s.value }}</h2>
+        <p>{{ s.label }}</p>
+      </div>
+    }
   </div>
 </header>
 
@@ -59,43 +61,45 @@
   </button>
 </div>
 
-
-  <main class="content">
-    <section class="posts">
-      <!-- NOTE: use filteredPosts (not posts) -->
-      <div class="post-card" *ngFor="let post of filteredPosts"
->
-        <div class="post-header">
-          <div class="user">{{ post.user }}</div>
-          <div class="time">{{ post.time }}</div>
-        </div>
-        <h3>{{ post.title }}</h3>
-        <p>{{ post.content }}</p>
-
-        <div class="tags">
-          <span *ngFor="let tag of post.tags">{{ tag }}</span>
-        </div>
-
-        <div class="post-stats">
-          <div>👍 {{ post.likes }}</div>
-          <div>💬 {{ post.comments }}</div>
-          <div>👁️ {{ post.views }}</div>
-        </div>
+<section class="posts">
+  <!-- NOTE: use filteredPosts (not posts) -->
+  @for (post of filteredPosts; track post.title) {
+    <div class="post-card">
+      <div class="post-header">
+        <div class="user">{{ post.user }}</div>
+        <div class="time">{{ post.time }}</div>
       </div>
-    </section>
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.content }}</p>
 
-    <aside class="sidebar">
-      <h3>Top Questers</h3>
-      <ul>
-        <li *ngFor="let q of topQuesters">
-          <div>
-            <strong>{{ q.name }}</strong>
-            <p>{{ q.title }}</p>
-          </div>
-          <span>{{ q.score }}</span>
-        </li>
-      </ul>
-      <button class="view-all">View Full Leaderboard</button>
-    </aside>
-  </main>
+      <div class="tags">
+        @for (tag of post.tags; track tag) {
+          <span>{{ tag }}</span>
+        }
+      </div>
+
+      <div class="post-stats">
+        <div>👍 {{ post.likes }}</div>
+        <div>💬 {{ post.comments }}</div>
+        <div>👁️ {{ post.views }}</div>
+      </div>
+    </div>
+  }
+</section>
+
+<aside class="sidebar">
+  <h3>Top Questers</h3>
+  <ul>
+    @for (q of topQuesters; track q.name) {
+      <li>
+        <div>
+          <strong>{{ q.name }}</strong>
+          <p>{{ q.title }}</p>
+        </div>
+        <span>{{ q.score }}</span>
+      </li>
+    }
+  </ul>
+  <button class="view-all">View Full Leaderboard</button>
+</aside>
 </div>
