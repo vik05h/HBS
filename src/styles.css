@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  --neon-green: #00ff41;
-  --neon-green-bright: #39ff14;
-  --neon-green-dark: #00cc33;
+  --neon-green: #FFD700;
+  --neon-green-bright: #FFEA00;
+  --neon-green-dark: #FFC700;
   --black: #000000;
   --dark-gray: #0a0a0a;
   --darker-gray: #050505;
