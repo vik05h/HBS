@@ -15,16 +15,24 @@ export class Community implements AfterViewInit {
   private mouse = { x: -9999, y: -9999, active: false };
 
   // Tunables
-  private readonly DENSITY = 0.000050;   // dots per pixel
+  private readonly DENSITY = 0.00008;   // dots per pixel
   private readonly SPEED = 0.9;          // random drift
   private readonly DAMPING = 0.996;      // velocity damping
   private readonly DOT_RADIUS = 2.0;
   private readonly BASE_ALPHA = 0.22;
+  private readonly DOT_RGB = '255,255,255'; // white dots/lines
+
 
   // Mouse interaction (only mouse links)
   private readonly MOUSE_RADIUS = 180;
   private readonly MAX_MOUSE_LINKS = 35; // how many lines from cursor
   private readonly MOUSE_PUSH = 0;       // no push/pull force
+  // Gold color helpers
+// White color helpers
+private WHITE = (a: number) => `rgba(255, 255, 255, ${a})`;
+private WHITE_SOFT = (a: number) => `rgba(255, 255, 255, ${a})`;
+
+
 
   constructor(private el: ElementRef) {}
 
@@ -81,6 +89,9 @@ export class Community implements AfterViewInit {
     // background
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, width, height);
+    ctx.shadowBlur = 0;
+ctx.shadowColor = '#fff';
+
 
     // soft mouse halo
     if (this.mouse.active) {
@@ -88,9 +99,12 @@ export class Community implements AfterViewInit {
         this.mouse.x, this.mouse.y, 0,
         this.mouse.x, this.mouse.y, this.MOUSE_RADIUS
       );
-      halo.addColorStop(0.0, 'rgba(120,255,180,0.12)');
-      halo.addColorStop(0.35, 'rgba(120,255,180,0.06)');
-      halo.addColorStop(1.0, 'rgba(120,255,180,0)');
+halo.addColorStop(0.0, 'rgba(255,255,255,0.10)');
+halo.addColorStop(0.35, 'rgba(255,255,255,0.05)');
+halo.addColorStop(1.0, 'rgba(255,255,255,0)');
+
+
+
       ctx.globalCompositeOperation = 'lighter';
       ctx.fillStyle = halo;
       ctx.beginPath();
@@ -124,7 +138,9 @@ export class Community implements AfterViewInit {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, this.DOT_RADIUS, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(120,255,180,${alpha})`;
+    ctx.fillStyle = this.WHITE(alpha);
+
+
       ctx.fill();
     }
 
@@ -145,8 +161,10 @@ export class Community implements AfterViewInit {
         const t = 1 - n.d / this.MOUSE_RADIUS;
         const alpha = 0.16 * t;
         if (alpha <= 0.01) continue;
-        ctx.strokeStyle = `rgba(80,255,160,${alpha})`;
-        ctx.lineWidth = 0.9;
+       ctx.strokeStyle = this.WHITE(alpha);
+
+ctx.lineWidth = 0.9;
+
         ctx.beginPath();
         ctx.moveTo(this.mouse.x, this.mouse.y);
         ctx.lineTo(n.x, n.y);
@@ -224,10 +242,11 @@ export class Community implements AfterViewInit {
 
   // ---- avatar helpers ----
   // For <img [src]="getAvatarUrl(post.user)">
-  getAvatarUrl(name: string): string {
-    const initials = name.split(' ').map(n => n[0]).join('');
-    return `https://api.dicebear.com/7.x/initials/svg?seed=${initials}&backgroundColor=1c1f1c&textColor=00ff88`;
-  }
+getAvatarUrl(name: string): string {
+  const initials = name.split(' ').map(n => n[0]).join('');
+  return `https://api.dicebear.com/7.x/initials/svg?seed=${initials}&backgroundColor=1c1f1c&textColor=ffd700`;
+}
+
   getAvatarAlt(name: string): string {
     return `${name}'s avatar`;
   }
@@ -235,15 +254,16 @@ export class Community implements AfterViewInit {
   // For <div class="post-avatar" [ngStyle]="avatarStyle(post.user)">
   avatarStyle(name: string) {
     const initials = name.split(' ').map(n => n[0]).join('');
-    const bg = `https://api.dicebear.com/7.x/initials/svg?seed=${initials}&backgroundColor=1c1f1c&textColor=00ff88`;
-    return {
-      backgroundImage: `url('${bg}')`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      borderRadius: '50%',
-      border: '1.5px solid rgba(0,255,136,0.4)',
-      boxShadow: '0 0 8px rgba(0,255,136,0.3)'
-    } as const;
+  const bg = `https://api.dicebear.com/7.x/initials/svg?seed=${initials}&backgroundColor=1c1f1c&textColor=ffd700`;
+return {
+  backgroundImage: `url('${bg}')`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  borderRadius: '50%',
+  border: '1.5px solid rgba(255,215,0,0.4)',
+  boxShadow: '0 0 8px rgba(255,215,0,0.3)'
+} as const;
+
   }
 
   topQuesters = [
@@ -260,6 +280,11 @@ export class Community implements AfterViewInit {
   setFilter(key: FilterKey): void {
     this.activeFilter = key;
   }
+
+initial(name: string): string {
+  const ch = (name || '').trim().charAt(0);
+  return ch ? ch.toUpperCase() : '?';
+}
 
   get filteredPosts() {
     const copy = [...this.posts];
